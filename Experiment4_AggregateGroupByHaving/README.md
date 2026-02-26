@@ -38,123 +38,325 @@ HAVING condition;
 
 **Question 1**
 --
--- Paste Question 1 here
+How many appointments are scheduled for each doctor?
+
+Sample table:Appointments Table
+
+<img width="968" height="158" alt="image" src="https://github.com/user-attachments/assets/ababe034-746f-4759-92f5-3501540d2849" />
+
+<br>For example:
+
+Result
+|DoctorID  |  TotalAppointments |
+|---------- |  -----------------|
+|3   |        3|
+|4    |       2|
+|6     |      1|
+|7      |     3|
+|10     |    1|
+
 
 ```sql
--- Paste your SQL code below for Question 1
+SELECT DoctorID, COUNT(AppointmentID) AS TotalAppointments 
+FROM Appointments 
+GROUP BY DoctorID;
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1235" height="718" alt="image" src="https://github.com/user-attachments/assets/983d7e2a-9c88-4224-a91c-0166d908b73d" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+How many patients are there in each city?
+
+Sample table: Patients Table
+
+<img width="954" height="143" alt="Screenshot 2026-02-26 090424" src="https://github.com/user-attachments/assets/9df2962e-e9cd-4e48-946c-134cf8413e52" />
+
+<br>For example:
+
+Result
+|Address  |   TotalPatients |
+|---------- | ------------- |
+|Berlin   |   3|
+|Chicago   |  4|
+|Mexico     | 3|
+
 
 ```sql
--- Paste your SQL code below for Question 2
+SELECT Address, COUNT(*) AS TotalPatients 
+FROM Patients
+GROUP BY Address;
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1232" height="496" alt="image" src="https://github.com/user-attachments/assets/e9b253fd-3186-4bca-a7bd-d7b0a0d0f1e5" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+How many appointments are scheduled in each hour of the day?
+
+Sample table:Appointments Table
+
+|name                 |             type|
+|-------------------- |         ----------|
+|AppointmentID    |           INTEGER|
+|PatientID         |                INTEGER|
+|DoctorID           |              INTEGER|
+|AppointmentDateTime |  DATETIME|
+|Purpose              |             TEXT|
+|Status                |              TEXT  |   
+
+For example:
+
+Result
+|HourOfDay  | TotalAppointments|
+|---------- | -----------------|
+|09     |     2|
+|10      |    5|
+|11       |   1|
+|14        |  1|
+|16         | 1|
+
 
 ```sql
--- Paste your SQL code below for Question 3
+SELECT strftime('%H', AppointmentDateTime) AS HourOfDay, COUNT(AppointmentID) AS TotalAppointments 
+FROM Appointments 
+GROUP BY HourOfDay  
+ORDER BY HourOfDay;
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1235" height="617" alt="image" src="https://github.com/user-attachments/assets/3dba23fd-a007-46ac-9779-a9bee8d8a9aa" />
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL query to find the number of employees who are having the same age removing the duplicate values.
+
+Sample table: employee
+
+|id  | name|age|address|salary
+|-----|-----|------|-----|-----|
+|1|Paul|32|California|20000|
+|4|Mark|25|Richtown|65000|
+|5|David|27|Texas|85000|
+
+ 
+
+For example:
+
+Result
+|COUNT <br>----------|
+|----------| 
+|4|
+
 
 ```sql
--- Paste your SQL code below for Question 4
+SELECT COUNT(DISTINCT age) AS COUNT
+FROM employee;
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1237" height="398" alt="image" src="https://github.com/user-attachments/assets/d2f1e7f1-7ee5-4ec6-9041-9d7a49f9c28c" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL query to find  how many employees work in California?
+
+Table: employee
+
+|name   |     type|
+|---------- | ----------|
+|id    |      INTEGER|
+|name   |     TEXT|
+|age     |    INTEGER|
+|city     |   TEXT|
+|income    |  INTEGER|
+ 
+
+For example:
+
+Result
+|employees_in_california <br>---------------------------|
+|---------------------------| 
+|2|
+
 
 ```sql
--- Paste your SQL code below for Question 5
+SELECT COUNT(*) AS employees_in_california 
+FROM employee 
+WHERE city = 'California';
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1237" height="401" alt="image" src="https://github.com/user-attachments/assets/959229a6-13ea-4d10-af0d-87c640a39390" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to find Who has the highest income among employee living in California?
+
+Table: employee
+
+|name   |     type|
+|---------- | ----------|
+|id    |      INTEGER|
+|name   |     TEXT|
+|age     |    INTEGER|
+|city     |   TEXT|
+|income    |  INTEGER|
+For example:
+
+Result
+|name      |  max(income)|
+|---------- | -----------|
+|Adam        |5000000|
+
 
 ```sql
--- Paste your SQL code below for Question 6
+SELECT name,max(income) 
+FROM employee 
+WHERE city = 'California';
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1237" height="397" alt="image" src="https://github.com/user-attachments/assets/3e959a88-0705-4df9-a404-4c2adc3cee69" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to find the total income of employees aged 40 or above.
+
+Table: employee
+
+|name    |    type|
+|----------|  ----------|
+|id     |     INTEGER|
+|name    |    TEXT|
+|age      |   INTEGER|
+|city      |  TEXT|
+|income     | INTEGER|
+
+For example:
+
+Result
+|total_income <br> ---------------|
+|------------|
+|1800000|
+
 
 ```sql
--- Paste your SQL code below for Question 7
+SELECT SUM(income) AS total_income 
+FROM employee 
+WHERE age >= 40;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1237" height="395" alt="image" src="https://github.com/user-attachments/assets/1cf102e4-0a0b-43cc-947f-03848c09d558" />
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write the SQL query that achieves the grouping of data by age intervals using the expression (age/5)5, calculates the average age for each group, and excludes groups where the average age is not less than 24.
+
+Sample table: customer1
+
+<img width="1057" height="180" alt="image" src="https://github.com/user-attachments/assets/175bf9ed-bf8e-469c-9f20-2be4f55ce7ff" />
+
+
+<br>For example:
+
+Result
+|age_group  | AVG(age)|
+|---------- | ----------|
+|20          |23.0|
+
 
 ```sql
--- Paste your SQL code below for Question 8
+SELECT (age/5)*5 as age_group,AVG(age) 
+FROM customer1 
+GROUP BY (age/5)*5
+HAVING AVG(age) < 24;
 ```
 
 **Output:**
+<img width="1233" height="392" alt="image" src="https://github.com/user-attachments/assets/6ccc5794-cf7d-4985-9cec-4c8e1e33be14" />
 
-![Output8](output.png)
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write the SQL query that achieves the grouping of data by age, calculates the minimum income for each age group, and includes only those age groups where the minimum income is less than 1,000,000.
+
+Sample table: employee
+
+<img width="777" height="162" alt="image" src="https://github.com/user-attachments/assets/cb8ccd69-302e-4762-9f0c-274e867f7c98" />
+
+
+<br>For example:
+
+Result
+|age        | Income|
+|----------  |----------|
+|32      |    200000|
+|40       |   350000|
+|45        |  450000|
+
 
 ```sql
--- Paste your SQL code below for Question 9
+SELECT age,MIN(Income) AS Income 
+FROM employee 
+GROUP BY age
+HAVING MIN(Income) < 1000000;
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1235" height="521" alt="image" src="https://github.com/user-attachments/assets/859eb201-c294-4905-a72f-1140bd7a656c" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write the SQL query to find how many patients have more than 3 medical records?.
+
+Sample table: MedicalRecords
+
+|name    |    type|
+|---------- | ----------|
+|RecordID  |  INTEGER|
+|PatientID  | INTEGER|
+|DoctorID    |INTEGER|
+|Date        |DATE|
+|Diagnosis   |TEXT|
+|Treatment   |TEXT|
+|Medication  |TEXT|
+For example:
+
+Result
+|PatientID  | TotalRecords|
+|----------  |------------|
+|1           |4|
 
 ```sql
--- Paste your SQL code below for Question 10
+SELECT PatientID, COUNT(RecordID) AS TotalRecords 
+FROM MedicalRecords 
+GROUP BY PatientID  
+HAVING COUNT(RecordID) > 3;
 ```
 
 **Output:**
+<img width="1232" height="426" alt="image" src="https://github.com/user-attachments/assets/db9fb01f-0e6f-4e07-9143-cc3663dffb76" />
 
-![Output10](output.png)
 
 
 ## RESULT
