@@ -31,7 +31,10 @@ END;
 - Write an **AFTER INSERT** trigger on the `employees` table to log the new data into the `employee_log` table.
 
 **Expected Output:**
+
 - A new entry is added to the `employee_log` table each time a new record is inserted into the `employees` table.
+
+<img width="808" height="881" alt="image" src="https://github.com/user-attachments/assets/f685b877-d70c-4aae-ae22-165dc96cd96e" />
 
 ---
 
@@ -41,7 +44,10 @@ END;
 - Use `RAISE_APPLICATION_ERROR` to prevent deletion and issue a custom error message.
 
 **Expected Output:**
+
 - If an attempt is made to delete a record from `sensitive_data`, an error message is raised, e.g., `ERROR: Deletion not allowed on this table.`
+
+<img width="903" height="167" alt="image" src="https://github.com/user-attachments/assets/ebea874a-c6a9-4c1f-a11c-91ebc61b0705" />
 
 ---
 
@@ -51,7 +57,10 @@ END;
 - Write a **BEFORE UPDATE** trigger on the `products` table to set the `last_modified` column to the current timestamp whenever an update occurs.
 
 **Expected Output:**
+
 - The `last_modified` column in the `products` table is updated automatically to the current date and time when any record is updated.
+
+<img width="871" height="667" alt="image" src="https://github.com/user-attachments/assets/95feb3bc-36b4-4894-bbbb-e5e229754726" />
 
 ---
 
@@ -61,7 +70,10 @@ END;
 - Write an **AFTER UPDATE** trigger on the `customer_orders` table to increment the counter in the `audit_log` table every time a record is updated.
 
 **Expected Output:**
+
 - The `audit_log` table will maintain a count of how many updates have been made to the `customer_orders` table.
+
+<img width="827" height="547" alt="image" src="https://github.com/user-attachments/assets/aba2d7de-20e5-4b39-9ca7-abefdc41edf4" />
 
 ---
 
@@ -71,7 +83,10 @@ END;
 - If the condition is not met, raise an error to prevent the insert.
 
 **Expected Output:**
+
 - If the inserted salary in the `employees` table is below the condition (e.g., salary < 3000), the insert operation is blocked, and an error message is raised, such as: `ERROR: Salary below minimum threshold.`
+
+<img width="896" height="530" alt="image" src="https://github.com/user-attachments/assets/b39adcb8-e970-49e0-b1e4-d83f4726fea9" />
 
 ## RESULT
 Thus, the PL/SQL trigger programs were written and executed successfully.
